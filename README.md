@@ -1,55 +1,61 @@
-# Лабораторный проект: EDA (Diabetes Dataset)
+# Лабораторный проект: Задача классификации (Diabetes Dataset)
 
 ## Цель
-Командный пошаговый анализ данных (EDA) + подготовка датафрейма для последующего моделирования.
+Построить и оценить модель классификации поверх очищенного датасета из ЛР-1; освоить базовые и продвинутые алгоритмы, метрики, интерпретацию, анализ ошибок.
 
 ## Участники и файлы
 | Участник | Роль | Ноутбук |
 |----------|------|---------|
-| Роман | Импорт и диагностика | 01_import_diagnostics.ipynb |
-| Илья | Описательная статистика | 02_univariate.ipynb |
-| Максим | Двухфакторный анализ и корреляции | 03_bivariate_corr.ipynb |
-| Стас | Подготовка данных (импутация, кодирование, масштабирование) | 04_preprocessing.ipynb |
-| Кирилл | Выбросы и итоговые выводы | 05_outliers_conclusions.ipynb |
+| Роман | Повторная загрузка и pipeline | 01_data_preparation_and_pipeline.ipynb |
+| Максим | Разбиение и валидация | 02_baseline_models_logreg_dt.ipynb |
+| Кирилл | Базовые модели | 03_advanced_model_xgb_lgb_cb.ipynb |
+| Стас | Продвинутая модель и поиск гиперпараметров | 04_explainability_error_analysis.ipynb |
+| Илья | Интерпритация и анализ ошибок + отчет + ревью | 05_final_assembly_and_qc.ipynb |
 
 ## Структура проекта
 ```
 notebooks/        — отдельный ноутбук под каждый этап  
 data/raw/         — исходные данные (diabetes.csv)  
 data/interim/     — промежуточные (например, diabetes_stage1.csv)  
-data/processed/   — финальные данные для моделирования  
-src/              — вспомогательные функции (опционально)  
-```
-
-## Быстрый старт
-```bash
-git clone https://github.com/Soloda1/diabetes-eda-lab.git
-cd diabetes-eda-lab
-pip install -r requirements.txt
-# Положить diabetes.csv в data/raw/
-jupyter lab  # или jupyter notebook
-```
-
-## Правила Git (минимум)
-1. Каждый редактирует ТОЛЬКО свой ноутбук.  
-2. Перед push: `git pull --rebase`.  
-3. Сообщения коммитов короткие: `feat: add univariate plots` или `fix: update missing logic`.  
-4. Не коммитим большие сырые данные > 50МБ.  
-5. Если нужно добавить библиотеку → добавь её в requirements.txt.
-
-## Мини Git-шпаргалка
-```bash
-git status
-git add notebooks/02_univariate.ipynb
-git commit -m "feat: univariate initial"
-git pull --rebase
-git push
+src/              — вспомогательные функции (опционально)
 ```
 
 ## Данные
-Источник: Pima Indians Diabetes (UCI / Kaggle).  
-Файл: `data/raw/diabetes.csv`.  
-Нули в Glucose, BloodPressure, SkinThickness, Insulin, BMI → скрытые пропуски.
+Источник: Использовать очищенный датасет из лабораторной работы 1 (заполнение пропусков + нормализация + винсоризация выбросов ). Pima Indians Diabetes (UCI / Kaggle).  
+Файл: `data/raw/diabetes_clean.csv`.  
+
+## Мини чек-лист
+
+### Данные и Pipeline
+- [ ] Использую очищенный датасет из ЛР-1  
+- [ ] Все преобразования собраны в sklearn Pipeline/ColumnTransformer  
+- [ ] fit только на train (импьютация/скейлер/one-hot) – утечек нет  
+- [ ] Список признаков и стратегия пропусков зафиксированы и описаны  
+
+### Разбиение / валидация
+- [ ] Stratified train/valid/test = 60/20/20, random_state=42  
+- [ ] При CV: StratifiedKFold(shuffle=True, random_state=42)  
+- [ ] Test не трогаю до финального выбора модели/порога  
+
+### Базовые модели
+- [ ] Обучены LogisticRegression и DecisionTree (подобран max_depth)  
+- [ ] Метрики на valid: F1 + ROC-AUC (и PR-AUC, если позитивов < 30%)  
+- [ ] Краткий вывод: какая baseline-модель лучше и почему  
+
+### Продвинутая модель
+- [ ] Одна из: CatBoost / LightGBM / XGBoost  
+- [ ] Поиск 5–10 конфигураций (Grid/Random/SearchCV) с логом результатов  
+- [ ] Сравнение с baseline — выбран «победитель»  
+
+### Интерпретация и ошибки
+- [ ] SHAP (summary + 1–2 waterfall) или permutation importance  
+- [ ] Показаны минимум 3 FN и 3 FP с кратким разбором причин и идеями улучшения  
+
+### Репродуцируемость
+- [ ] Зафиксировал random_state/seed  
+- [ ] Вывел версии библиотек  
+- [ ] Убедился, что ноутбук запускается без ошибок  
+
 
 ## Дальнейшие шаги
-- После завершения всех этапов можно объединить выводы в один отчёт (PDF/Markdown).
+- После завершения всех этапов можно объединить выводы в один отчёт (PDF/DOCX).
