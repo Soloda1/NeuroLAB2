@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual env
+venv/
+.env
+.env.*
+
+# VSCode / PyCharm
+.vscode/
+.idea/
+
+# Data (можно оставить raw, если маленький)
+data/interim/*
+data/processed/*
+
+# Если НЕ хотите коммитить сырые — раскомментируй:
+# data/raw/*
+
+# Logs
+logs/
+*.log
+/.idea/
+/.venv/
