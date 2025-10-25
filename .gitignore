@@ -15,9 +15,6 @@ venv/
 .vscode/
 .idea/
 
-# Data (можно оставить raw, если маленький)
-data/interim/*
-data/processed/*
 
 # Если НЕ хотите коммитить сырые — раскомментируй:
 # data/raw/*
