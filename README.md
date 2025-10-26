@@ -6,11 +6,11 @@
 ## Участники и файлы
 | Участник | Роль | Ноутбук |
 |----------|------|---------|
-| Роман | Повторная загрузка и pipeline | 01_data_preparation_and_pipeline.ipynb |
-| Максим | Разбиение и валидация | 02_baseline_models_logreg_dt.ipynb |
-| Кирилл | Базовые модели | 03_advanced_model_xgb_lgb_cb.ipynb |
-| Стас | Продвинутая модель и поиск гиперпараметров | 04_explainability_error_analysis.ipynb |
-| Илья | Интерпритация и анализ ошибок + отчет + ревью | 05_final_assembly_and_qc.ipynb |
+| Роман | Повторная загрузка и pipeline + Разбиение и валидация| 01_data_preparation_and_pipeline.ipynb |
+| Максим | Базовые модели | 02_baseline_models_logreg_dt.ipynb |
+| Кирилл | Продвинутая модель и поиск гиперпараметров | 03_advanced_model_xgb_lgb_cb.ipynb |
+| Стас | Интерпретация и анализ ошибок | 04_explainability_error_analysis.ipynb |
+| Илья | Репродуцируемость + отчет + ревью | 05_final_assembly_and_qc.ipynb |
 
 ## Структура проекта
 ```
